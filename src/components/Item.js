@@ -15,6 +15,7 @@ import {useState} from 'react'
 export default function Item({nombre, descripcion, stock, handleCompras}) {
 
   const [stockState, setStock] = useState(stock);
+  const [disabledButton, setDisabled] = useState(false);
 
   function buttonText() {
     if (stockState > 0) {
@@ -40,7 +41,13 @@ export default function Item({nombre, descripcion, stock, handleCompras}) {
       <h5>
         <span>En stock: {enStock()}</span>
       </h5>
-      <button onClick={() => {setStock(stockState - 1); if(stockState > 0) handleCompras(1)}}>
+      <button onClick={
+        () => {
+          setStock(stockState - 1); 
+          if(stockState > 0) handleCompras(1); 
+          if(stockState <= 1) setDisabled(true)
+        }} disabled={disabledButton} >
+          
         {buttonText()}
       </button>
     </div>
