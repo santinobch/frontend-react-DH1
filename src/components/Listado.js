@@ -10,13 +10,13 @@ import React from 'react'
 
 import Item from './Item';
 
-export default function Listado() {
-
+export default function Listado({compras}) {
+  
   let data = require('./data.json');
 
   const items = data.map((i) =>
     {
-      return (<Item key={i.id} nombre={i.producto.nombre} descripcion={i.producto.descripcion} stock={i.stock}/>)
+      return (<Item key={i.id} nombre={i.producto.nombre} descripcion={i.producto.descripcion} stock={i.stock} handleCompras={compras}/>)
     })
 
   return (

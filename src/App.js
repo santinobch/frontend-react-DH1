@@ -7,13 +7,21 @@
 
 import Cabecera from "./components/Cabecera";
 import Listado from "./components/Listado";
+import {useState} from 'react'
 
 function App() {
 
+  const [count, setCount] = useState(0);
+
+  const handleCompras = num => {
+    setCount(current => current + num);
+    console.log(count);
+  };
+
   return (
     <div className="App">
-      <Cabecera />
-      <Listado />
+      <Cabecera compras={count}/>
+      <Listado compras={handleCompras}/>
     </div>
   );
 }
